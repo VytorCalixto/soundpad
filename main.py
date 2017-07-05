@@ -16,6 +16,7 @@ root.geometry("%dx%d+0+0" % (w, h))
 root.configure(background="#535353")
 
 AudioMixer.mixer.init()
+AudioMixer.mixer.set_num_channels(18)
 # original = AudioSegment.from_mp3('piano-stab.mp3')
 # original.export('/tmp/piano-stab.wav', format='wav')
 # effect = AudioMixer.mixer.Sound('/tmp/piano-stab.wav')
@@ -25,6 +26,13 @@ AudioMixer.mixer.init()
 
 app = App(root)
 
+updateRate = 100
+
+def update():
+    root.after(updateRate, update)
+    app.update()
+
+root.after(updateRate, update)
 root.mainloop()
 # Reenables key repetition
 os.system('xset r on')

@@ -22,3 +22,28 @@ class Grid:
         for x in range(self.width):
             for y in range(self.height):
                 self.grid[x * self.height + y] = Pad(self.frame, x, y)
+                self.grid[x * self.height + y].setPadNumber(x * self.height + y + 1)
+
+    def keydownPad(self, pad):
+        pad = pad - 1
+        if(pad > self.width*self.height):
+            print("Trying to access inexistent pad")
+            return
+        self.grid[pad].onKeydown()
+
+    def keyupPad(self, pad):
+        pad = pad - 1
+        if(pad > self.width*self.height):
+            print("Trying to access inexistent pad")
+            return
+        self.grid[pad].onKeyup()
+
+    def stopAll(self):
+        for x in range(self.width):
+            for y in range(self.height):
+                self.grid[x * self.height + y].onStop()
+
+    def update(self):
+        for x in range(self.width):
+            for y in range(self.height):
+                self.grid[x * self.height + y].update()
