@@ -3,7 +3,6 @@
 import os
 from tkinter import Tk, Menu
 from audioMixer import AudioMixer
-from pydub import AudioSegment
 from app import App
 
 # Disables key repetition
@@ -39,10 +38,13 @@ app = App(root)
 
 updateRate = 100
 
+# Update cycle
 def update():
     root.after(updateRate, update)
     app.update()
 
 root.after(updateRate, update)
+
 root.mainloop()
+
 exit()
