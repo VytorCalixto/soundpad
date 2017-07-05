@@ -26,7 +26,7 @@ class Pad(Frame):
         self.play = Button(self.frame, text="▶")
         self.play.grid(row=2)
 
-        self.open = Button(self.frame, text="Open", command=self.onOpen)
+        self.open = Button(self.frame, text="Load", command=self.onOpen)
         self.open.grid(row=2, column=1)
 
         self.looping = IntVar()

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 import os
-from tkinter import Tk
+from tkinter import Tk, Menu
 from audioMixer import AudioMixer
 from pydub import AudioSegment
 from app import App
@@ -15,14 +15,25 @@ root.title("Soundpad v0")
 root.geometry("%dx%d+0+0" % (w, h))
 root.configure(background="#535353")
 
+def exit():
+    global root
+    # Reenables key repetition
+    os.system('xset r on')
+    try:
+        root.destroy()
+    except:
+        print("Exiting...")
+
+mainMenu = Menu(root)
+fileMenu = Menu(mainMenu, tearoff=0)
+fileMenu.add_command(label="Open Session")
+fileMenu.add_command(label="New Session")
+fileMenu.add_command(label="Quit", command=exit)
+mainMenu.add_cascade(label="File", menu=fileMenu)
+root.config(menu=mainMenu)
+
 AudioMixer.mixer.init()
 AudioMixer.mixer.set_num_channels(18)
-# original = AudioSegment.from_mp3('piano-stab.mp3')
-# original.export('/tmp/piano-stab.wav', format='wav')
-# effect = AudioMixer.mixer.Sound('/tmp/piano-stab.wav')
-# def btCallback():
-#     print "Click!"
-#     effect.play()
 
 app = App(root)
 
@@ -34,5 +45,4 @@ def update():
 
 root.after(updateRate, update)
 root.mainloop()
-# Reenables key repetition
-os.system('xset r on')
+exit()
