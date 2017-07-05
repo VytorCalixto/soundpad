@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 import os
 from Tkinter import Tk
-from pygame import mixer
+from audioMixer import AudioMixer
 from pydub import AudioSegment
 from app import App
 
@@ -10,19 +10,20 @@ from app import App
 os.system('xset r off')
 
 root = Tk()
+w, h = root.winfo_screenwidth(), root.winfo_screenheight()
 root.title("Soundpad v0")
-root.geometry("640x480+50+50")
+root.geometry("%dx%d+0+0" % (w, h))
+root.configure(background="#535353")
 
-mixer.init()
-original = AudioSegment.from_mp3('piano-stab.mp3')
-original.export('/tmp/piano-stab.wav', format='wav')
-effect = mixer.Sound('/tmp/piano-stab.wav')
-def btCallback():
-    print "Click!"
-    effect.play()
+AudioMixer.mixer.init()
+# original = AudioSegment.from_mp3('piano-stab.mp3')
+# original.export('/tmp/piano-stab.wav', format='wav')
+# effect = AudioMixer.mixer.Sound('/tmp/piano-stab.wav')
+# def btCallback():
+#     print "Click!"
+#     effect.play()
 
 app = App(root)
-app.setPlayCallback(btCallback, "Play a Sound!")
 
 root.mainloop()
 # Reenables key repetition

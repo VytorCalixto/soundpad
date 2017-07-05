@@ -1,13 +1,15 @@
 from Tkinter import Frame, Button, LEFT
+from grid import Grid
 
-class App:
+class App(Frame):
     def __init__(self, master):
-        frame = Frame(master)
-        frame.focus_set()
-        frame.pack()
+        Frame.__init__(self, master)
+        self.master.config()
 
-        self.button = Button(frame, text="Play")
-        self.button.pack(side=LEFT)
+        self.frame = Frame(master)
+        self.frame.focus_set()
+        self.frame.pack()
 
-    def setPlayCallback(self, cb, text):
-        self.button.config(command=cb, text=text)
+        gridWidth = 3
+        gridHeight = 3
+        self.padGrid = Grid(self.frame, gridWidth, gridHeight)
