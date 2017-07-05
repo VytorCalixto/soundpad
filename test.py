@@ -1,7 +1,7 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 import os
-from Tkinter import Tk, Button
+from tkinter import Tk, Button
 from pygame import mixer
 from pydub import AudioSegment
 
@@ -12,7 +12,7 @@ root.title("Soundpad")
 root.geometry("640x480+50+50")
 
 def click():
-    print "Click!"
+    print("Click!")
 
 clickBt = Button(root, text="Botão", command=click)
 clickBt.pack()
@@ -22,10 +22,10 @@ original = AudioSegment.from_mp3('piano-stab.mp3')
 original.export('/tmp/piano-stab.wav', format='wav')
 effect = mixer.Sound('/tmp/piano-stab.wav')
 def keyup(e):
-    print 'up', e.char
+    print('up', e.char)
     effect.stop()
 def keydown(e):
-    print 'down', e.char
+    print('down', e.char)
     effect.play()
 
 root.bind("<KeyPress>", keydown)

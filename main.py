@@ -1,7 +1,7 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 import os
-from Tkinter import Tk
+from tkinter import Tk
 from audioMixer import AudioMixer
 from pydub import AudioSegment
 from app import App

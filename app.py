@@ -1,4 +1,4 @@
-from Tkinter import Frame, Button, LEFT
+from tkinter import Frame, Button, LEFT
 from grid import Grid
 
 class App(Frame):

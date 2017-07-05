@@ -1,4 +1,4 @@
-from Tkinter import Frame
+from tkinter import Frame
 from pad import Pad
 
 class Grid:
@@ -17,7 +17,8 @@ class Grid:
     def createGrid(self, w, h):
         self.width = w
         self.height = h
-        self.grid = [[None for x in range(self.width)] for y in range(self.height)]
+        # self.grid = [[None for x in range(self.width)] for y in range(self.height)]
+        self.grid = [None for x in range(self.width * self.height)]
         for x in range(self.width):
             for y in range(self.height):
-                self.grid[x][y] = Pad(self.frame, x, y)
+                self.grid[x * self.height + y] = Pad(self.frame, x, y)
