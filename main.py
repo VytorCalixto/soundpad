@@ -14,8 +14,14 @@ root.title("Soundpad v0")
 #root.geometry("%dx%d+0+0" % (w, h))
 root.configure(background="#535353")
 
+AudioMixer.mixer.init()
+AudioMixer.mixer.set_num_channels(5*9)
+
+app = App(root)
+
 def exit():
     global root
+    app.save()
     # Reenables key repetition
     os.system('xset r on')
     try:
@@ -23,11 +29,6 @@ def exit():
         root.destroy()
     except:
         print("Exiting...")
-
-AudioMixer.mixer.init()
-AudioMixer.mixer.set_num_channels(5*9)
-
-app = App(root)
 
 mainMenu = Menu(root)
 fileMenu = Menu(mainMenu, tearoff=0)

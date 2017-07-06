@@ -74,12 +74,12 @@ class Pad(Frame):
         if self.sound.get_num_channels() > 0:
             self.sound.stop()
         self.sound.set_volume(self.soundVolume.get())
-        self.channel = self.sound.play(self.looping.get())
+        self.channel = self.sound.play(loops=self.looping.get(), fade_ms=1000)
 
     def onStop(self):
         if self.sound is None:
             return
-        self.sound.stop()
+        self.sound.fadeout(1500)
         self.returnToPlay()
 
     def returnToPlay(self):
