@@ -25,8 +25,8 @@ def exit():
 
 mainMenu = Menu(root)
 fileMenu = Menu(mainMenu, tearoff=0)
-fileMenu.add_command(label="Open Session")
 fileMenu.add_command(label="New Session")
+fileMenu.add_command(label="Open Session")
 fileMenu.add_command(label="Quit", command=exit)
 mainMenu.add_cascade(label="File", menu=fileMenu)
 root.config(menu=mainMenu)
