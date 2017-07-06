@@ -15,7 +15,7 @@ class Pad(Frame):
 
         self.sound = None
         self.channel = None
-        self.filename = ""
+        self.filename = None
 
         self.padNumber = Label(self.frame, text="PAD - ")
         self.padNumber.grid(row=0, columnspan=2)
@@ -89,14 +89,15 @@ class Pad(Frame):
         self.play.config(text="⏹", command=self.onStop)
 
     def onOpen(self):
-        ftypes = [('MP3 files', '*.mp3'), ('WAV files', '*.wav'), ('All files', '*')]
-        dlg = filedialog.Open(self, filetypes = ftypes)
-        filename = dlg.show()
+        ftypes = (('OGG files', '*.ogg'),('MP3 files', "*.mp3;"),('WAV files', '*.wav'),("All Files", "*"))
+        filename = filedialog.askopenfilename(initialdir="~", title="Open a sound", filetypes=ftypes)
 
         if filename:
             self.loadSound(filename)
 
     def loadSound(self, filename):
+        if filename is None:
+            return
         extension = os.path.splitext(filename)[1]
         name = os.path.basename(os.path.splitext(filename)[0])
         fl = filename

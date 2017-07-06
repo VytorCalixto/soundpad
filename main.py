@@ -11,7 +11,7 @@ os.system('xset r off')
 root = Tk()
 w, h = root.winfo_screenwidth(), root.winfo_screenheight()
 root.title("Soundpad v0")
-root.geometry("%dx%d+0+0" % (w, h))
+#root.geometry("%dx%d+0+0" % (w, h))
 root.configure(background="#535353")
 
 def exit():
@@ -23,18 +23,20 @@ def exit():
     except:
         print("Exiting...")
 
-mainMenu = Menu(root)
-fileMenu = Menu(mainMenu, tearoff=0)
-fileMenu.add_command(label="New Session")
-fileMenu.add_command(label="Open Session")
-fileMenu.add_command(label="Quit", command=exit)
-mainMenu.add_cascade(label="File", menu=fileMenu)
-root.config(menu=mainMenu)
-
 AudioMixer.mixer.init()
 AudioMixer.mixer.set_num_channels(18)
 
 app = App(root)
+
+mainMenu = Menu(root)
+fileMenu = Menu(mainMenu, tearoff=0)
+fileMenu.add_command(label="New Session")
+fileMenu.add_command(label="Open Session", command=app.open)
+fileMenu.add_command(label="Save Session", command=app.save)
+fileMenu.add_command(label="Save Session As", command=app.saveAs)
+fileMenu.add_command(label="Quit", command=exit)
+mainMenu.add_cascade(label="File", menu=fileMenu)
+root.config(menu=mainMenu)
 
 updateRate = 100
 
