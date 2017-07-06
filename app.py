@@ -1,5 +1,6 @@
 from tkinter import Frame, Button, LEFT, Label, StringVar, filedialog
 from grid import Grid
+from audioMixer import AudioMixer
 import pickle
 
 class App(Frame):
@@ -19,9 +20,9 @@ class App(Frame):
         self.label = Label(self.frame, textvariable=self.text)
         self.label.pack()
 
-        gridWidth = 3
-        gridHeight = 3
-        self.padGrid = Grid(self.frame, gridWidth, gridHeight)
+        self.gridWidth = 3
+        self.gridHeight = 3
+        self.padGrid = Grid(self.frame, self.gridWidth, self.gridHeight)
         self.frame.bind("<KeyPress>", self.keydown)
         self.frame.bind("<KeyRelease>", self.keyup)
 
@@ -117,6 +118,11 @@ class App(Frame):
         print(str(sounds))
         pickle.dump(sounds, savefile)
         savefile.close()
+
+    def new(self):
+        AudioMixer.mixer.stop()
+        self.savefile = None
+        self.padGrid.createGrid(self.gridWidth, self.gridHeight)
 
     def update(self):
         self.padGrid.update()

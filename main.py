@@ -19,18 +19,19 @@ def exit():
     # Reenables key repetition
     os.system('xset r on')
     try:
+        AudioMixer.mixer.quit()
         root.destroy()
     except:
         print("Exiting...")
 
 AudioMixer.mixer.init()
-AudioMixer.mixer.set_num_channels(18)
+AudioMixer.mixer.set_num_channels(5*9)
 
 app = App(root)
 
 mainMenu = Menu(root)
 fileMenu = Menu(mainMenu, tearoff=0)
-fileMenu.add_command(label="New Session")
+fileMenu.add_command(label="New Session", command=app.new)
 fileMenu.add_command(label="Open Session", command=app.open)
 fileMenu.add_command(label="Save Session", command=app.save)
 fileMenu.add_command(label="Save Session As", command=app.saveAs)
@@ -38,7 +39,7 @@ fileMenu.add_command(label="Quit", command=exit)
 mainMenu.add_cascade(label="File", menu=fileMenu)
 root.config(menu=mainMenu)
 
-updateRate = 100
+updateRate = 300
 
 # Update cycle
 def update():
